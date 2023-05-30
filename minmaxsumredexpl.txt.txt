@@ -1,0 +1,13 @@
+The code you provided demonstrates the use of reduction clauses in OpenMP for performing minimum, maximum, sum, and average calculations on an array of integers.
+
+The `min_reduction` function calculates the minimum value in the array. It initializes `minn` to the maximum possible value using `INT_MAX`. The `#pragma omp parallel for reduction(min: minn)` directive parallelizes the loop that iterates over the array elements. Each thread processes a subset of elements and updates its local `minn` variable with the minimum value found. At the end of the parallel loop, the `minn` values from all threads are combined, and the overall minimum value is obtained. The function then prints the minimum value to the console.
+
+Similarly, the `max_reduction` function calculates the maximum value in the array using the `reduction(max: maxx)` clause. It initializes `maxx` to the minimum possible value using `INT_MIN`. Each thread finds the maximum value in its assigned subset of elements, and the maximum values from all threads are combined to obtain the overall maximum value. The function prints the maximum value to the console.
+
+The `sum_reduction` function calculates the sum of all elements in the array using the `reduction(+: sum)` clause. It initializes `sum` to zero. Each thread computes the sum of elements in its assigned subset, and the partial sums from all threads are combined to obtain the overall sum. The function prints the sum to the console.
+
+The `average_reduction` function calculates the average of all elements in the array. It follows the same approach as the `sum_reduction` function but also divides the sum by the size of the array (`arr.size()`) to obtain the average. The result is printed to the console.
+
+In the `main` function, the size of the array `n` is obtained from the user, and the elements of the array `a` are populated accordingly. Then, each reduction function is called with the array as a parameter, and the respective results are printed to the console.
+
+Overall, the code demonstrates how to use OpenMP reduction clauses to parallelize calculations involving reduction operations such as finding the minimum, maximum, sum, and average of an array. The reduction clauses handle the task of combining the results from different threads, providing a convenient way to parallelize these calculations in a shared memory parallel programming environment.
